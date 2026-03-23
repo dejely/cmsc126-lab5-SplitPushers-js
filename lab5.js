@@ -107,6 +107,7 @@ function generateDigits(){
             return id;
         }
     }
+    return id;
 }
 
 function displayAll(){
@@ -140,7 +141,8 @@ function displayAll(){
 }
 
 function saveData(){
-    localStorage.setItem("students", student);
+    localStorage.setItem("students", JSON.stringify(student));
+    console.log(`${JSON.stringify(student)}`);
     console.log("Data Saved.");
 }
 
@@ -148,11 +150,12 @@ function loadData(){
     let studentData = localStorage.getItem("students");
     if (studentData != null){
         console.log("Data Loaded.");
-        student = studentData;
+        student = JSON.parse();
     }
 }
 
 function clearData(){
+    student = [];
     localStorage.removeItem("students");
     console.log("Data Cleared.");
 
