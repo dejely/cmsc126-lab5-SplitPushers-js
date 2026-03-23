@@ -77,6 +77,11 @@ function add_student(event){
     if (registree.email.endsWith("@up.edu.ph") == false){
         errors.push("Not a valid UP mail.")
     }
+    for (let i = 0; i < student.length; i++){
+        if (registree.email == student[i].email){
+            errors.push("Email is already in use")
+        }
+    }
 
     //check course
     if (registree.course == ""){
