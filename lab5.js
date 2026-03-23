@@ -141,16 +141,17 @@ function displayAll(){
 }
 
 function saveData(){
-    localStorage.setItem("students", JSON.stringify(student));
-    console.log(`${JSON.stringify(student)}`);
+    let save = JSON.stringify(student);
+    localStorage.setItem("students", save);
+    console.log(`${save}`);
     console.log("Data Saved.");
 }
 
 function loadData(){
-    let studentData = localStorage.getItem("students");
-    if (studentData != null){
+    let load = localStorage.getItem("students");
+    if (load != null){
         console.log("Data Loaded.");
-        student = JSON.parse();
+        student = JSON.parse(load);
     }
 }
 
