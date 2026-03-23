@@ -11,10 +11,31 @@ class Student{
 }
 
 function time_now(){
-    const timeNow = date
+    
+    document.getElementById("btn").addEventListener("click", function () {
+        const now = new Date();
+
+        const dateNow  = "Today is " + now.toLocaleDateString('en-US',{
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+
+        });
+        const timeNow = "The current time is " + now.toLocaleTimeString('en-US',{
+            hour: 'numeric',
+            minute: '2-digit'
+        });
+        document.getElementById("date").textContent = dateNow;
+        document.getElementById("time").textContent = timeNow;
+
+    }) 
+
+
+
+    console.log("you clicked");
 }
 
-const student = []
+const student = [];
 
 function add_student(){
 
