@@ -46,7 +46,6 @@ let student = [];
 function add_student(event){
     event.preventDefault();
     let valid = true;
-
     //generate student ID
     let Id = generateDigits();
     const registree = new Student( 
@@ -100,7 +99,7 @@ function generateDigits(){
     x.toString();
     id = "2024" + x;
     for (i = 0; i < student.length; i++) {
-        if (student[i].studentID == id){
+        if (student[i].studentId == id){
             return generateDigits();
         }
         else{
@@ -109,6 +108,32 @@ function generateDigits(){
     }
 }
 
-function displayAll(){
+function display_All(){
+    var displayTable = document.getElementById("display_table");
+    let header = 
+    `<tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Course</th>
+    </tr>`;
+
+
+    if (student.length > 0){
+        displayTable.style.display = "block";
+        displayTable.innerHTML = header;
+        for (let i = 0; i < student.length; i++){
+            var row = displayTable.insertRow(-1);
+            let entry =
+            `
+            <td>${student[i].studentId}</td>
+            <td>${student[i].name}</td>
+            <td>${student[i].age}</td>
+            <td>${student[i].email}</td>
+            <td>${student[i].course}</td>`;
+            row.innerHTML = entry;
+        }
+    }
     
 }
