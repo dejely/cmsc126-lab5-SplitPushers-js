@@ -38,12 +38,9 @@ function time_now(){
 
     }) 
 
-
-
-    console.log("you clicked");
 }
 
-const student = [];
+let student = [];
 
 function add_student(){
 

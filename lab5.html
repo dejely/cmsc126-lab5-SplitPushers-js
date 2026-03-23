@@ -14,8 +14,38 @@
 
     <br>
 
+    <form>
+        Name    
+        <input
+        type="text"
+        id="name"
+        placeholder="name"
+        required
+        minlength="4"
+        maxlength="30"
+        size="10"
+        style="width: 300px;"
+        >
+        <br>
+        Age  
+        <input 
+        type="number"
+        id="age"
+        placeholder="Age"
+        required
+        min="1"
+        style="width: 50px;"
+        >
+        <br>
+        Email
+        <input
+        type="email"
+        id="email"
+        placeholder="email"
+        >
+        <br>
     <label for="course-select">Choose your course</label>
-    <select name="Courses" id="course-select">
+        <select name="Courses" id="course-select">
         <option value="">Please Choose a Course</option>
         <option>BA Food Appreciation</option>
         <option>BA Applied Poetry of the Future</option>
@@ -24,6 +54,12 @@
         <option>BS Installing and Downloading</option>
         
     </select>
+    <br>
+        <button id="submit">Submit</button>
+    </form>
+
+    <br>
+
     
     <script src="lab5.js"></script>
     
