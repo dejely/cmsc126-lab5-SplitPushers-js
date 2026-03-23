@@ -9,11 +9,11 @@ const available_courses = [
 class Student{
 
     constructor(studentId, name, age, email, course){
-        this.studentId = studentId
-        this.name = name
-        this.age = age
-        this.email = email
-        this.course = course
+        this.studentId = studentId;
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.course = course;
     }
     
 }
@@ -98,18 +98,19 @@ function generateDigits(){
     let x = Math.floor(Math.random()*100000)
     x.toString();
     id = "2024" + x;
+    console.log(`Generated ${x}`)
     for (i = 0; i < student.length; i++) {
         if (student[i].studentId == id){
             return generateDigits();
         }
         else{
-             return id;
+            return id;
         }
     }
 }
 
-function display_All(){
-    var displayTable = document.getElementById("display_table");
+function displayAll(){
+    let displayTable = document.getElementById("display_table");
     let header = 
     `<tr>
         <th>Student ID</th>
@@ -124,7 +125,7 @@ function display_All(){
         displayTable.style.display = "block";
         displayTable.innerHTML = header;
         for (let i = 0; i < student.length; i++){
-            var row = displayTable.insertRow(-1);
+            let row = displayTable.insertRow(-1);
             let entry =
             `
             <td>${student[i].studentId}</td>
@@ -136,4 +137,23 @@ function display_All(){
         }
     }
     
+}
+
+function saveData(){
+    localStorage.setItem("students", student);
+    console.log("Data Saved.");
+}
+
+function loadData(){
+    let studentData = localStorage.getItem("students");
+    if (studentData != null){
+        console.log("Data Loaded.");
+        student = studentData;
+    }
+}
+
+function clearData(){
+    localStorage.removeItem("students");
+    console.log("Data Cleared.");
+
 }
