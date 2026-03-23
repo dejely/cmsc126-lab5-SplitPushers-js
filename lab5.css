@@ -1,3 +1,6 @@
+#search_results table{
+    display: none;
+}
 #display table{
     display: none;
 }

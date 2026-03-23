@@ -123,7 +123,24 @@ function generateDigits(){
 }
 
 function searchStudent(){
-
+    let resultTable = document.getElementById("search_results");
+    let name_query = document.getElementById("student_name_query").value;
+    //find student
+    for (let i = 0; i < student.length; i++){
+        if(student[i].name == name_query){
+            resultTable.style.display = "block";
+            resultTable.innerHTML = displayHeader;
+            let row = resultTable.insertRow(-1);
+            let entry =
+            `
+            <td>${student[i].studentId}</td>
+            <td>${student[i].name}</td>
+            <td>${student[i].age}</td>
+            <td>${student[i].email}</td>
+            <td>${student[i].course}</td>`;
+            row.innerHTML = entry;
+        }
+    }
 }
 
 function displayAll(){
