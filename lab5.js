@@ -9,11 +9,11 @@ const available_courses = [
 class Student{
 
     constructor(studentId, name, age, email, course){
-        this.studentId = studentId
-        this.name = name
-        this.age = age
-        this.email = email
-        this.course = course
+        this.studentId = studentId;
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.course = course;
     }
     
 }
@@ -41,12 +41,18 @@ function time_now(){
 }
 
 let student = [];
-
+let displayHeader = 
+    `<tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Course</th>
+    </tr>`;
 
 function add_student(event){
     event.preventDefault();
     let valid = true;
-
     //generate student ID
     let Id = generateDigits();
     const registree = new Student( 
@@ -67,7 +73,7 @@ function add_student(event){
     }
 
     //check age
-    if (registree.age <18){
+    if (registree.age <=18){
         errors.push("Age should be greater than 18.");
     }
     if (registree.age >=99){
@@ -77,6 +83,11 @@ function add_student(event){
     //check email
     if (registree.email.endsWith("@up.edu.ph") == false){
         errors.push("Not a valid UP mail.")
+    }
+    for (let i = 0; i < student.length; i++){
+        if (registree.email == student[i].email){
+            errors.push("Email is already in use")
+        }
     }
 
     //check course
@@ -99,12 +110,83 @@ function generateDigits(){
     let x = Math.floor(Math.random()*100000)
     x.toString();
     id = "2024" + x;
+    console.log(`Generated ${x}`)
     for (i = 0; i < student.length; i++) {
-        if (student[i].studentID == id){
+        if (student[i].studentId == id){
             return generateDigits();
         }
         else{
-             return id;
+            return id;
         }
     }
+    return id;
+}
+
+function find_student(){
+    let resultTable = document.getElementById("search_results");
+    let name_query = document.getElementById("student_name_query").value;
+    let found = false;
+    //find student
+    for (let i = 0; i < student.length; i++){
+        if(student[i].name == name_query){
+            found = true;
+            resultTable.style.display = "block";
+            resultTable.innerHTML = displayHeader;
+            let row = resultTable.insertRow(-1);
+            let entry =
+            `
+            <td>${student[i].studentId}</td>
+            <td>${student[i].name}</td>
+            <td>${student[i].age}</td>
+            <td>${student[i].email}</td>
+            <td>${student[i].course}</td>`;
+            row.innerHTML = entry;
+        }
+    }
+    if(found == false){
+        resultTable.style.display = "none";
+        alert("Student record does not exist.");
+    }
+}
+
+function display_list(){
+    let displayTable = document.getElementById("display_table");
+
+    if (student.length > 0){
+        displayTable.style.display = "block";
+        displayTable.innerHTML = displayHeader;
+        for (let i = 0; i < student.length; i++){
+            let row = displayTable.insertRow(-1);
+            let entry =
+            `
+            <td>${student[i].studentId}</td>
+            <td>${student[i].name}</td>
+            <td>${student[i].age}</td>
+            <td>${student[i].email}</td>
+            <td>${student[i].course}</td>`;
+            row.innerHTML = entry;
+        }
+    }
+    
+}
+
+function saveData(){
+    let save = JSON.stringify(student);
+    localStorage.setItem("students", save);
+    console.log(`${save}`);
+    console.log("Data Saved.");
+}
+
+function loadData(){
+    let load = localStorage.getItem("students");
+    if (load != null){
+        console.log("Data Loaded.");
+        student = JSON.parse(load);
+    }
+}
+
+function clearData(){
+    student = [];
+    localStorage.removeItem("students");
+    console.log("Data Cleared.");
 }

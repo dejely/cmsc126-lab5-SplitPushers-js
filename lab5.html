@@ -20,7 +20,7 @@
         <input
         type="text"
         id="name"
-        placeholder="name"
+        placeholder="Name"
         required
         minlength="4"
         maxlength="30"
@@ -40,7 +40,7 @@
         <input
         type="email"
         id="email"
-        placeholder="email"
+        placeholder="Email"
         >
         <br>
     <label for="course-select">Choose your course</label>
@@ -56,10 +56,26 @@
     <br>
         <button id="submit" onclick = "add_student(event)">Submit</button>
     </form>
-
     <br>
-
-    
+    <div id = "search">
+        <button id="search_student" onclick = find_student()>Search Student</button>
+        <input type="text"
+        id="student_name_query" 
+        placeholder="Search Name" 
+        minlength="4"
+        maxlength="30"
+        size="10">
+        <table id = "search_results"></table>
+    </div>
+    <br>
+    <div id = "display">
+        <button id="display_all" type = "button" onclick = "display_list()">Display All</button>
+        <table id = "display_table"></table>
+    </div>
+    <br>
+    <button id = "save_data" onclick="saveData()">Save Data</button>
+    <button id = "load_data" onclick="loadData()">Load Data</button>
+    <button id = "clear_data" onclick="clearData()">Clear Data</button>
     <script src="lab5.js"></script>
     
 </body>
