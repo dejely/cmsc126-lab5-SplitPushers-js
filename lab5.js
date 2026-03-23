@@ -125,9 +125,11 @@ function generateDigits(){
 function find_student(){
     let resultTable = document.getElementById("search_results");
     let name_query = document.getElementById("student_name_query").value;
+    let found = false;
     //find student
     for (let i = 0; i < student.length; i++){
         if(student[i].name == name_query){
+            found = true;
             resultTable.style.display = "block";
             resultTable.innerHTML = displayHeader;
             let row = resultTable.insertRow(-1);
@@ -140,6 +142,10 @@ function find_student(){
             <td>${student[i].course}</td>`;
             row.innerHTML = entry;
         }
+    }
+    if(found == false){
+        resultTable.style.display = "none";
+        alert("Student record does not exist.");
     }
 }
 
