@@ -42,6 +42,69 @@ function time_now(){
 
 let student = [];
 
-function add_student(){
 
+function add_student(event){
+    event.preventDefault();
+    let valid = true;
+
+    //generate student ID
+    let Id = generateDigits();
+    const registree = new Student( 
+        Id,
+        document.getElementById("name").value,
+        document.getElementById("age").value,
+        document.getElementById("email").value,
+        document.getElementById("course-select").value
+    );
+
+    let errors = [];
+    //check name
+    if (registree.name.length <= 5){
+        errors.push("Name should be greater than 5 characters.");
+    }
+    if ((registree.name.includes(' ')) == false){
+        errors.push("Name should contain a whitespace.")
+    }
+
+    //check age
+    if (registree.age <=18){
+        errors.push("Age should be greater than 18.");
+    }
+    if (registree.age >=99){
+        errors.push("Age should be less than 99.");
+    }
+
+    //check email
+    if (registree.email.endsWith("@up.edu.ph") == false){
+        errors.push("Not a valid UP mail.")
+    }
+
+    //check course
+    if (registree.course == ""){
+        errors.push("Select a valid course.")
+
+    }
+
+    if (errors.length == 0){
+        student.push(registree);
+        alert("Student sucessfully registered!")
+    }
+    else{
+        let out = errors.join("\n");
+        alert(out);
+    }
+}
+
+function generateDigits(){
+    let x = Math.floor(Math.random()*100000)
+    x.toString();
+    id = "2024" + x;
+    for (i = 0; i < student.length; i++) {
+        if (student[i].studentID == id){
+            return generateDigits();
+        }
+        else{
+             return id;
+        }
+    }
 }
