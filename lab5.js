@@ -41,7 +41,14 @@ function time_now(){
 }
 
 let student = [];
-
+let displayHeader = 
+    `<tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Course</th>
+    </tr>`;
 
 function add_student(event){
     event.preventDefault();
@@ -66,7 +73,7 @@ function add_student(event){
     }
 
     //check age
-    if (registree.age <18){
+    if (registree.age <=18){
         errors.push("Age should be greater than 18.");
     }
     if (registree.age >=99){
@@ -115,21 +122,16 @@ function generateDigits(){
     return id;
 }
 
+function searchStudent(){
+
+}
+
 function displayAll(){
     let displayTable = document.getElementById("display_table");
-    let header = 
-    `<tr>
-        <th>Student ID</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Email</th>
-        <th>Course</th>
-    </tr>`;
-
 
     if (student.length > 0){
         displayTable.style.display = "block";
-        displayTable.innerHTML = header;
+        displayTable.innerHTML = displayHeader;
         for (let i = 0; i < student.length; i++){
             let row = displayTable.insertRow(-1);
             let entry =
@@ -164,5 +166,4 @@ function clearData(){
     student = [];
     localStorage.removeItem("students");
     console.log("Data Cleared.");
-
 }
