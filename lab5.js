@@ -7,6 +7,14 @@ const available_courses = [
 ]
 
 class Student{
+
+    constructor(studentId, name, age, email, course){
+        this.studentId = studentId
+        this.name = name
+        this.age = age
+        this.email = email
+        this.course = course
+    }
     
 }
 
