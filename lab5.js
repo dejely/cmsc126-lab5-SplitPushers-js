@@ -122,7 +122,7 @@ function generateDigits(){
     return id;
 }
 
-function searchStudent(){
+function find_student(){
     let resultTable = document.getElementById("search_results");
     let name_query = document.getElementById("student_name_query").value;
     //find student
@@ -143,7 +143,7 @@ function searchStudent(){
     }
 }
 
-function displayAll(){
+function display_list(){
     let displayTable = document.getElementById("display_table");
 
     if (student.length > 0){
