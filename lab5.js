@@ -67,7 +67,7 @@ function add_student(event){
     }
 
     //check age
-    if (registree.age <=18){
+    if (registree.age <18){
         errors.push("Age should be greater than 18.");
     }
     if (registree.age >=99){
